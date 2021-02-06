@@ -1,9 +1,12 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'connect.dart';
 
 class ThetaFile {
   static final String _url = 'http://192.168.1.1/osc/commands/execute';
 
-  static Future<String> getLastThumb64() async {
+  static Future<Uint8List> getLastThumbBytes() async {
     var _data = {
       'name': 'camera.listFiles',
       'parameters': {
@@ -17,6 +20,7 @@ class ThetaFile {
     var response = await connect(_url, 'post', _data);
 
     String thumb64 = response['results']['entries'][0]['thumbnail'];
-    return thumb64;
+    var thumbBytes = base64Decode(thumb64);
+    return thumbBytes;
   }
 }
