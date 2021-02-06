@@ -55,8 +55,15 @@
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
-        <h1 id="a-library-for-ricoh-theta-developers">A library for RICOH THETA Developers</h1>
-<p>Based on <a href="https://api.ricoh/docs/theta-web-api-v2.1/">THETA Web API v2.1</a></p>
+        <h1 id="dart-library-for-ricoh-theta-mobile-and-desktop-developers">Dart library for RICOH THETA Mobile and Desktop Developers</h1>
+<p>Based on <a href="https://api.ricoh/docs/theta-web-api-v2.1/">THETA Web API v2.1</a>. For information
+on connecting the camera and testing the camera API with a command line tool,
+see <a href="https://github.com/theta360developers/webapi/blob/master/README.md">RICOH THETA API HTTP Community Tests README</a>.</p>
+<p>This is for education and testing use only and should not be used for production.  Only
+a portion of the API has been implemented.  We are using this library
+to document usage of the API and show prototypes of concepts such as displaying thumbnails.
+We are not to using the library to build production apps.</p>
+<p>This project is not connected to any official RICOH project.</p>
 <h2 id="installation">Installation</h2>
 <ol>
 <li>save the packages directory to the root directory of your Flutter or Dart app</li>
@@ -70,6 +77,16 @@
 <li>import the library</li>
 </ol>
 <pre class="language-dart"><code class="language-dart">import 'package:theta/theta.dart';
+</code></pre>
+<h3 id="install-from-github">Install from GitHub</h3>
+<p>Alternately, you can install the package automatically from GitHub without
+having to copy the files into your project.  To automatically install from
+GitHub, add the following to your <code>pubspec.yaml</code> file.</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  theta:
+    git:
+      url: https://github.com/codetricity/theta
+      ref: main
 </code></pre>
 <h2 id="example-command-line-use">Example Command Line Use</h2>
 <pre class="language-dart"><code class="language-dart">...
@@ -257,7 +274,6 @@ class _MyHomePageState extends State&lt;MyHomePage&gt; {
     );
   }
 }
-
 </code></pre>
       </section>
       

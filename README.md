@@ -1,6 +1,15 @@
-# A library for RICOH THETA Developers
+# Dart library for RICOH THETA Mobile and Desktop Developers
 
-Based on [THETA Web API v2.1](https://api.ricoh/docs/theta-web-api-v2.1/)
+Based on [THETA Web API v2.1](https://api.ricoh/docs/theta-web-api-v2.1/). For information
+on connecting the camera and testing the camera API with a command line tool,
+see [RICOH THETA API HTTP Community Tests README](https://github.com/theta360developers/webapi/blob/master/README.md).
+
+This is for education and testing use only and should not be used for production.  Only
+a portion of the API has been implemented.  We are using this library
+to document usage of the API and show prototypes of concepts such as displaying thumbnails.
+We are not to using the library to build production apps.
+
+This project is not connected to any official RICOH project.
 
 ## Installation
 
@@ -17,6 +26,20 @@ dependencies:
 
 ```dart
 import 'package:theta/theta.dart';
+```
+
+### Install from GitHub
+
+Alternately, you can install the package automatically from GitHub without
+having to copy the files into your project.  To automatically install from
+GitHub, add the following to your `pubspec.yaml` file.
+
+```yaml
+dependencies:
+  theta:
+    git:
+      url: https://github.com/codetricity/theta
+      ref: main
 ```
 
 ## Example Command Line Use
@@ -231,5 +254,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
 ```
+
