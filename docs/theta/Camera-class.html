@@ -173,9 +173,8 @@
           <span class="signature">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>         
         </dt>
         <dd>
-          construct a map from the response body and get camera
-info, including firmware version and camera model
-This is the request: GET <a href="http://192.168.1.1/osc/info">http://192.168.1.1/osc/info</a> 
+          Camera info including firmware version and camera model
+based on GET <a href="http://192.168.1.1/osc/info">http://192.168.1.1/osc/info</a> 
                   <div class="features">read-only</div>
 </dd>
         <dt id="model" class="property">
@@ -192,24 +191,7 @@ This is the request: GET <a href="http://192.168.1.1/osc/info">http://192.168.1.
         </dt>
         <dd>
           request: POST <a href="http://192.168.1.1/osc/state">http://192.168.1.1/osc/state</a>
-POST request to get camera state
-example output
-{
- "fingerprint": "FIG_0001",
-"state": {
-   "batteryLevel": 0.8,
-   "storageUri": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5",
-   "_apiVersion": 2,
-   "_batteryState": "charged",
-   "_cameraError": [],
-   "_captureStatus": "idle",
-   "_capturedPictures": 0,
-   "_latestFileUrl": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5/100RICOH/R0010294.JPG",
-   "_recordableTime": 0,
-   "_recordedTime": 0,
-   "_function": "normal"
- }
-} 
+batteryLevel, API version, camera errors, captureStatus, _latestFileUrl 
                   <div class="features">read-only</div>
 </dd>
       </dl>

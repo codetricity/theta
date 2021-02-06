@@ -13,11 +13,13 @@ class Camera {
     return response;
   }
 
+  /// internal camera firmware version such as 1.60.1
   static Future<String> get firmware async {
     var cameraInfo = await info;
     return cameraInfo['firmwareVersion'];
   }
 
+  /// camera model such as RICOH THETA SC2
   static Future<String> get model async {
     var cameraInfo = await info;
     return cameraInfo['model'];
@@ -39,10 +41,10 @@ class Camera {
     return cameraState['state']['batteryLevel'];
   }
 
-  /// get camera status.  Request that ID is passed
+  /// Camera status.  Requires "id" is passed
   /// POST http://192.168.1.1/osc/commands/status
   /// Get the ID from a command such as takePicture
-  static Future<Map<String, dynamic>> status(id) async {
+  static Future<Map<String, dynamic>> status(int id) async {
     //POST http://192.168.1.1/osc/commands/status
     var url = _baseUrl + 'commands/status';
 
