@@ -2,7 +2,7 @@ name: theta
 description: RICOH THETA WebAPI package for Dart
 version: 0.1.0
 author: Oppkey
-homepage: https://theta360developers.github.io/webapi
+homepage: https://codetricity.github.io/theta
 
 environment:
   sdk: '>=2.10.0 <3.0.0'
