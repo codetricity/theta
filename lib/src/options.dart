@@ -2,6 +2,9 @@ import 'connect.dart';
 
 const String _url = 'http://192.168.1.1/osc/commands/execute';
 
+/// HDR, exposure, shutter speed, and many other functions are "options".
+/// Camera options correspond to the long list of options
+/// on the official API specification.
 class CameraOption {
   /// Turn on hdr filter
   static Future<Map<String, dynamic>> hdrSet() async {

@@ -71,6 +71,11 @@
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
       <div><h1><span class="kind-class">ThetaFile</span> class  </h1></div>
 
+    <section class="desc markdown">
+      <p>Get and manage image and video files and thumbnails. Media
+files on the RICOH THETA are accessible by URLs. The thumbnails
+are base64 encoded strings in the file listing.</p>
+    </section>
     
 
     <section class="summary offset-anchor" id="constructors">
@@ -152,13 +157,18 @@
     <section class="summary offset-anchor" id="static-methods">
       <h2>Static Methods</h2>
       <dl class="callables">
-        <dt id="getLastThumb64" class="callable">
-          <span class="name"><a href="../theta/ThetaFile/getLastThumb64.html">getLastThumb64</a></span><span class="signature">(<wbr>)
-            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>&gt;</span></span>
+        <dt id="getLastThumbBytes" class="callable">
+          <span class="name"><a href="../theta/ThetaFile/getLastThumbBytes.html">getLastThumbBytes</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span>
           </span>
                   </dt>
         <dd>
-           
+          returns a Unint8List integer list of a single thumbnail that can be saved
+to local storage as a 7K JPEG image or displayed on the mobile device
+screen. This is to test if the last image was taken successfully and
+also provide some clue as to image settings such as exposure.
+Using Dart command line programs (not Flutter), you can save to local
+storage with: <a href="../theta/ThetaFile/getLastThumbBytes.html">[...]</a>
                   
 </dd>
       </dl>
@@ -188,7 +198,7 @@
     
     
       <li class="section-title"><a href="../theta/ThetaFile-class.html#static-methods">Static methods</a></li>
-      <li><a href="../theta/ThetaFile/getLastThumb64.html">getLastThumb64</a></li>
+      <li><a href="../theta/ThetaFile/getLastThumbBytes.html">getLastThumbBytes</a></li>
     
     
     </ol>
