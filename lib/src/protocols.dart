@@ -2,6 +2,9 @@ import 'connect.dart';
 
 const String _baseUrl = 'http://192.168.1.1/osc/';
 
+/// Camera state, status, and info. Also grab specific values such as
+/// batteryLevel, firmware, model. Roughly correspends to the _Protocols_
+/// section of the [THETA Web API v2.1 reference](https://api.ricoh/docs/theta-web-api-v2.1/)
 class Camera {
   /// Camera info including firmware version and camera model
   /// based on GET http://192.168.1.1/osc/info
@@ -25,9 +28,29 @@ class Camera {
     return cameraInfo['model'];
   }
 
-  /// request: POST http://192.168.1.1/osc/state
+  /// request: POST `http://192.168.1.1/osc/state`
   /// batteryLevel, API version, camera errors, captureStatus, _latestFileUrl
-  ///
+  /// Example output converted from a Dart map to JSON for indented display.
+  /// Although the camera returns JSON, the output of this `state` command
+  /// is a Dart map, not JSON.
+  /// ```json
+  /// {
+  /// "fingerprint": "FIG_0001",
+  /// "state": {
+  ///   "batteryLevel": 0.8,
+  ///   "storageUri": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5",
+  ///   "_apiVersion": 2,
+  ///   "_batteryState": "charged",
+  ///   "_cameraError": [],
+  ///   "_captureStatus": "idle",
+  ///   "_capturedPictures": 0,
+  ///   "_latestFileUrl": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5/100RICOH/R0010361.JPG",
+  ///   "_recordableTime": 0,
+  ///   "_recordedTime": 0,
+  ///   "_function": "normal"
+  ///  }
+  ///}
+  /// ```
   static Future<Map<String, dynamic>> get state async {
     var url = _baseUrl + 'state';
     // request: POST http://192.168.1.1/osc/state

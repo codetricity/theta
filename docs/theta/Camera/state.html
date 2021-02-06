@@ -98,8 +98,28 @@
 </section>
         
                 <section class="desc markdown">
-          <p>request: POST <a href="http://192.168.1.1/osc/state">http://192.168.1.1/osc/state</a>
-batteryLevel, API version, camera errors, captureStatus, _latestFileUrl</p>
+          <p>request: POST <code>http://192.168.1.1/osc/state</code>
+batteryLevel, API version, camera errors, captureStatus, _latestFileUrl
+Example output converted from a Dart map to JSON for indented display.
+Although the camera returns JSON, the output of this <code>state</code> command
+is a Dart map, not JSON.</p>
+<pre class="language-json"><code class="language-json">{
+"fingerprint": "FIG_0001",
+"state": {
+  "batteryLevel": 0.8,
+  "storageUri": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5",
+  "_apiVersion": 2,
+  "_batteryState": "charged",
+  "_cameraError": [],
+  "_captureStatus": "idle",
+  "_capturedPictures": 0,
+  "_latestFileUrl": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5/100RICOH/R0010361.JPG",
+  "_recordableTime": 0,
+  "_recordedTime": 0,
+  "_function": "normal"
+ }
+}
+</code></pre>
         </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span></h2>

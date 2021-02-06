@@ -91,19 +91,19 @@
     <section class="multi-line-signature">
       <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
             <span class="name ">status</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="status-param-id"><span class="type-annotation">dynamic</span> <span class="parameter-name">id</span></span></li>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="status-param-id"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span></span></li>
 </ol>)
       
     </section>
     <section class="desc markdown">
-      <p>get camera status.  Request that ID is passed
+      <p>Camera status.  Requires "id" is passed
 POST <a href="http://192.168.1.1/osc/commands/status">http://192.168.1.1/osc/commands/status</a>
 Get the ID from a command such as takePicture</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">static Future&lt;Map&lt;String, dynamic&gt;&gt; status(id) async {
+      <pre class="language-dart"><code class="language-dart">static Future&lt;Map&lt;String, dynamic&gt;&gt; status(int id) async {
   &#47;&#47;POST http:&#47;&#47;192.168.1.1&#47;osc&#47;commands&#47;status
   var url = _baseUrl + &#39;commands&#47;status&#39;;
 

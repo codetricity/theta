@@ -3,7 +3,7 @@ import 'connect.dart';
 const String _url = 'http://192.168.1.1/osc/commands/execute';
 
 class CameraOption {
-  ///Turn on hdr filter
+  /// Turn on hdr filter
   static Future<Map<String, dynamic>> hdrSet() async {
     var data = {
       'name': 'camera.setOptions',
@@ -31,6 +31,15 @@ class CameraOption {
     return response;
   }
 
+  /// exposure program is documented [here](https://api.ricoh/docs/theta-web-api-v2.1/options/exposure_program/)
+  /// Must be one of 1, 2, 3, 4, 9.
+  /// * 1 : Manual program -  Manually set the ISO sensitivity (iso) setting,
+  /// shutter speed (shutterSpeed) and aperture (aperture, RICOH THETA Z1 or later).
+  /// * 2 : Normal program - Exposure settings are all set automatically.
+  /// * 3 : Aperture priority program -  Manually set the aperture (aperture).
+  /// RICOH THETA Z1 or later.
+  /// * 4 : Shutter priority program - Manually set the shutter speed (shutterSpeed).
+  /// * 5 : 	ISO priority program - Manually set the ISO sensitivity (iso) setting.
   static Future<Map<String, dynamic>> setExposureProgram(programValue) async {
     var data = {
       'name': 'camera.setOptions',
