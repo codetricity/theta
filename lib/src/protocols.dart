@@ -3,9 +3,8 @@ import 'connect.dart';
 const String _baseUrl = 'http://192.168.1.1/osc/';
 
 class Camera {
-  /// construct a map from the response body and get camera
-  /// info, including firmware version and camera model
-  /// This is the request: GET http://192.168.1.1/osc/info
+  /// Camera info including firmware version and camera model
+  /// based on GET http://192.168.1.1/osc/info
   ///
   static Future<Map<String, dynamic>> get info async {
     // GET http://192.168.1.1/osc/info
@@ -25,24 +24,8 @@ class Camera {
   }
 
   /// request: POST http://192.168.1.1/osc/state
-  /// POST request to get camera state
-  /// example output
-  /// {
-  ///  "fingerprint": "FIG_0001",
-  /// "state": {
-  ///    "batteryLevel": 0.8,
-  ///    "storageUri": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5",
-  ///    "_apiVersion": 2,
-  ///    "_batteryState": "charged",
-  ///    "_cameraError": [],
-  ///    "_captureStatus": "idle",
-  ///    "_capturedPictures": 0,
-  ///    "_latestFileUrl": "http://192.168.1.1/files/thetasc26c21a247d9055838792badc5/100RICOH/R0010294.JPG",
-  ///    "_recordableTime": 0,
-  ///    "_recordedTime": 0,
-  ///    "_function": "normal"
-  ///  }
-  /// }
+  /// batteryLevel, API version, camera errors, captureStatus, _latestFileUrl
+  ///
   static Future<Map<String, dynamic>> get state async {
     var url = _baseUrl + 'state';
     // request: POST http://192.168.1.1/osc/state
