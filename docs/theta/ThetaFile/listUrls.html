@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the getLastThumbBytes method from the ThetaFile class, for the Dart programming language.">
-  <title>getLastThumbBytes method - ThetaFile class - theta library - Dart API</title>
+  <meta name="description" content="API docs for the listUrls method from the ThetaFile class, for the Dart programming language.">
+  <title>listUrls method - ThetaFile class - theta library - Dart API</title>
 
   
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">theta</a></li>
     <li><a href="../../theta/theta-library.html">theta</a></li>
     <li><a href="../../theta/ThetaFile-class.html">ThetaFile</a></li>
-    <li class="self-crumb">getLastThumbBytes method</li>
+    <li class="self-crumb">listUrls method</li>
   </ol>
-  <div class="self-name">getLastThumbBytes</div>
+  <div class="self-name">listUrls</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="../../index.html">theta</a></li>
       <li><a href="../../theta/theta-library.html">theta</a></li>
       <li><a href="../../theta/ThetaFile-class.html">ThetaFile</a></li>
-      <li class="self-crumb">getLastThumbBytes method</li>
+      <li class="self-crumb">listUrls method</li>
     </ol>
     
     <h5>ThetaFile class</h5>
@@ -84,61 +84,47 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-method">getLastThumbBytes</span> method </h1></div>
+      <div><h1><span class="kind-method">listUrls</span> method </h1></div>
 
     <section class="multi-line-signature">
-      <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span>
-            <span class="name ">getLastThumbBytes</span>
-(<wbr>)
+      <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>&gt;</span></span>&gt;</span></span>
+            <span class="name ">listUrls</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="listUrls-param-entryCount"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/int-class.html">int</a></span> <span class="parameter-name">entryCount</span></span></li>
+</ol>)
       
     </section>
     <section class="desc markdown">
-      <p>returns a Unint8List integer list of a single thumbnail that can be saved
-to local storage as a 7K JPEG image or displayed on the mobile device
-screen. This is to test if the last image was taken successfully and
-also provide some clue as to image settings such as exposure.
-Using Dart command line programs (not Flutter), you can save to local
-storage with:</p>
-<pre class="language-dart"><code class="language-dart"> async {
-   await File('thumbnail.jpg')
-       .writeAsBytes(await ThetaFile.getLastThumbBytes());
- }
-</code></pre>
-<p>Displaying the image on Flutter.</p>
-<p>method that is called when a button is pressed.</p>
-<pre class="language-dart"><code class="language-dart">import 'package:theta/theta.dart';
-...
-  void _displayThumb() async {
- var imageData = await ThetaFile.getLastThumbBytes();
- setState(() {
-   textResponse = false;
-   imageBytes = imageData;
- });
-}
-</code></pre>
-<p>To display the image on the Flutter screen</p>
-<pre class="language-dart"><code class="language-dart">Image.memory(imageBytes)
+      <p>List of the URLs for the images and video on the THETA camera
+This can be useful for testing as most editors and terminals
+allow you to ctrl-click on the url to view it in a browser such
+as chrome.
+Example:</p>
+<pre class="language-dart"><code class="language-dart">print(pretty(await ThetaFile.listUrls(await ThetaFile.totalEntries)));
 </code></pre>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">static Future&lt;Uint8List&gt; getLastThumbBytes() async {
+      <pre class="language-dart"><code class="language-dart">static Future&lt;List&lt;String&gt;&gt; listUrls(int entryCount) async {
   var _data = {
     &#39;name&#39;: &#39;camera.listFiles&#39;,
     &#39;parameters&#39;: {
       &#39;fileType&#39;: &#39;image&#39;,
-      &#39;entryCount&#39;: 1,
-      &#47;&#47; &#39;_startFileUrl&#39;: imageUrl,
-      &#39;maxThumbSize&#39;: 640,
-      &#39;_detail&#39;: true,
+      &#39;entryCount&#39;: entryCount,
+      &#39;maxThumbSize&#39;: 0,
+      &#39;_detail&#39;: false,
     }
   };
   var response = await connect(_url, &#39;post&#39;, _data);
+  var entries = response[&#39;results&#39;][&#39;entries&#39;];
 
-  String thumb64 = response[&#39;results&#39;][&#39;entries&#39;][0][&#39;thumbnail&#39;];
-  var thumbBytes = base64Decode(thumb64);
-  return thumbBytes;
+  &#47;&#47;ignore: omit_local_variable_types
+  List&lt;String&gt; urls = [];
+
+  entries.forEach((element) {
+    urls.add(element[&#39;fileUrl&#39;]);
+  });
+  return urls;
 }</code></pre>
     </section>
 
