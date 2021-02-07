@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'connect.dart';
+import 'package:http/http.dart' as http;
 
 /// Get and manage image and video files and thumbnails. Media
 /// files on the RICOH THETA are accessible by URLs. The thumbnails
@@ -107,5 +108,36 @@ class ThetaFile {
       urls.add(element['fileUrl']);
     });
     return urls;
+  }
+
+  static Future<List<dynamic>> getThumbs(int number) async {
+    //ignore: omit_local_variable_types
+    List<String> listOfUrls = await listUrls(number);
+    var thumbs = [];
+    var headers = {'Content-Type': 'application/json;charset=utf-8'};
+    var client = http.Client();
+
+    try {
+      // var response2 = await client.get(
+      //     'http://192.168.1.1/files/thetasc26c21a247d9055838792badc5/100RICOH/R0010343.JPG?type=thumb',
+      //     headers: headers);
+      // print(response2.statusCode);
+      // thumbs.add(response2.bodyBytes);
+      // listOfUrls.forEach((url) async {
+      for (var i = 0; i < listOfUrls.length; i++) {
+        print(listOfUrls[i]);
+        var response =
+            await client.get('${listOfUrls[i]}?type=thumb', headers: headers);
+        print(response.statusCode);
+        thumbs.add(response.bodyBytes);
+      }
+    } catch (e) {
+      print(e);
+    } finally {
+      client.close();
+    }
+    print(thumbs.length);
+
+    return thumbs;
   }
 }
