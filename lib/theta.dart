@@ -8,3 +8,4 @@ export 'src/utils.dart';
 export 'src/commands.dart';
 export 'src/options.dart';
 export 'src/files.dart';
+export 'src/ambulance.dart';
