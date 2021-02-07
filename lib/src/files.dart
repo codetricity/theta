@@ -60,4 +60,52 @@ class ThetaFile {
     var thumbBytes = base64Decode(thumb64);
     return thumbBytes;
   }
+
+  /// total number of image and video files on camera
+  ///
+  static Future<int> get totalEntries async {
+    var _data = {
+      'name': 'camera.listFiles',
+      'parameters': {
+        'fileType': 'image',
+        'entryCount': 1,
+        'maxThumbSize': 0,
+        '_detail': false,
+      }
+    };
+    var response = await connect(_url, 'post', _data);
+
+    return response['results']['totalEntries'];
+  }
+
+  /// List of the URLs for the images and video on the THETA camera
+  /// This can be useful for testing as most editors and terminals
+  /// allow you to ctrl-click on the url to view it in a browser such
+  /// as chrome.
+  /// Example:
+  /// ```dart
+  /// print(pretty(await ThetaFile.listUrls(await ThetaFile.totalEntries)));
+  /// ```
+
+  static Future<List<String>> listUrls(int entryCount) async {
+    var _data = {
+      'name': 'camera.listFiles',
+      'parameters': {
+        'fileType': 'image',
+        'entryCount': entryCount,
+        'maxThumbSize': 0,
+        '_detail': false,
+      }
+    };
+    var response = await connect(_url, 'post', _data);
+    var entries = response['results']['entries'];
+
+    //ignore: omit_local_variable_types
+    List<String> urls = [];
+
+    entries.forEach((element) {
+      urls.add(element['fileUrl']);
+    });
+    return urls;
+  }
 }
