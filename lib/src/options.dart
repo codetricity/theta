@@ -111,4 +111,16 @@ class CameraOption {
     var response = connect(_url, 'post', data);
     return response;
   }
+
+  /// auto sleep. requires a number between 60 and 65535
+  static Future<Map<String, dynamic>> sleep(int seconds) async {
+    var data = {
+      'name': 'camera.setOptions',
+      'parameters': {
+        'options': {'sleepDelay': seconds}
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+  }
 }

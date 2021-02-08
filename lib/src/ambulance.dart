@@ -3,7 +3,7 @@ import 'connect.dart';
 const String _baseUrl = 'http://192.168.1.1/osc/commands/execute';
 
 /// Emergency or administrative tasks. Reset camera settings,
-/// reset my settings, delete all files from camera
+/// including my settings, delete all files from camera
 /// if these commands are in an end-user application, it
 /// would be nice to put a confirmation screen up to make
 /// sure the person is aware they will delete all their settings.
@@ -15,11 +15,8 @@ const String _baseUrl = 'http://192.168.1.1/osc/commands/execute';
 class Ambulance {
   /// reset camera settings.  Camera will reboot.  You must
   /// turn the camera on manually and reconnect to Wi-Fi.
-  /// This will not reset my settings.  You must clear
-  /// my settings with another command.  This command also does not
-  /// work as expected on the SC2.  Must  check the camera model
-  /// in this command
-  /// and then extend it to handle SC2-specific settings.  :-(
+  /// This will not reset my settings.  This also clears
+  /// my settings.
   /// https://api.ricoh/docs/theta-web-api-v2.1/commands/camera.reset/
   static Future<Map<String, dynamic>> reset() async {
     var data = {'name': 'camera.reset'};
