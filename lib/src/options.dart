@@ -113,7 +113,7 @@ class CameraOption {
   }
 
   /// auto sleep. requires a number between 60 and 65535
-  static Future<Map<String, dynamic>> sleep(int seconds) async {
+  static Future<Map<String, dynamic>> sleepDelay(int seconds) async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
