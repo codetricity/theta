@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the setExposureProgram method from the CameraOption class, for the Dart programming language.">
-  <title>setExposureProgram method - CameraOption class - theta library - Dart API</title>
+  <meta name="description" content="API docs for the offDelay method from the CameraOption class, for the Dart programming language.">
+  <title>offDelay method - CameraOption class - theta library - Dart API</title>
 
   
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">theta</a></li>
     <li><a href="../../theta/theta-library.html">theta</a></li>
     <li><a href="../../theta/CameraOption-class.html">CameraOption</a></li>
-    <li class="self-crumb">setExposureProgram method</li>
+    <li class="self-crumb">offDelay method</li>
   </ol>
-  <div class="self-name">setExposureProgram</div>
+  <div class="self-name">offDelay</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="../../index.html">theta</a></li>
       <li><a href="../../theta/theta-library.html">theta</a></li>
       <li><a href="../../theta/CameraOption-class.html">CameraOption</a></li>
-      <li class="self-crumb">setExposureProgram method</li>
+      <li class="self-crumb">offDelay method</li>
     </ol>
     
     <h5>CameraOption class</h5>
@@ -89,38 +89,29 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-method">setExposureProgram</span> method </h1></div>
+      <div><h1><span class="kind-method">offDelay</span> method </h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
-            <span class="name ">setExposureProgram</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="setExposureProgram-param-programValue"><span class="type-annotation">dynamic</span> <span class="parameter-name">programValue</span></span></li>
+            <span class="name ">offDelay</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="offDelay-param-seconds"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/int-class.html">int</a></span> <span class="parameter-name">seconds</span></span></li>
 </ol>)
       
     </section>
     <section class="desc markdown">
-      <p>exposure program is documented <a href="https://api.ricoh/docs/theta-web-api-v2.1/options/exposure_program/">here</a>
-Must be one of 1, 2, 3, 4, 9.</p>
-<ul>
-<li>1 : Manual program -  Manually set the ISO sensitivity (iso) setting,
-shutter speed (shutterSpeed) and aperture (aperture, RICOH THETA Z1 or later).</li>
-<li>2 : Normal program - Exposure settings are all set automatically.</li>
-<li>3 : Aperture priority program -  Manually set the aperture (aperture).
-RICOH THETA Z1 or later.</li>
-<li>4 : Shutter priority program - Manually set the shutter speed (shutterSpeed).</li>
-<li>5 : 	ISO priority program - Manually set the ISO sensitivity (iso) setting.</li>
-</ul>
+      <p>auto power off. requires a number between 60 and 65535
+60 will power off the camera after 60 seconds or 1 minute
+The default is 600 seconds or 10 minutes
+A value of 65535 will disable auto power off</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">static Future&lt;Map&lt;String, dynamic&gt;&gt; setExposureProgram(programValue) async {
+      <pre class="language-dart"><code class="language-dart">static Future&lt;Map&lt;String, dynamic&gt;&gt; offDelay(int seconds) async {
   var data = {
     &#39;name&#39;: &#39;camera.setOptions&#39;,
     &#39;parameters&#39;: {
-      &#39;options&#39;: {
-        &#39;exposureProgram&#39;: int.parse(programValue),
-      }
+      &#39;options&#39;: {&#39;offDelay&#39;: seconds}
     }
   };
   var response = connect(_url, &#39;post&#39;, data);
