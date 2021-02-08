@@ -113,11 +113,28 @@ class CameraOption {
   }
 
   /// auto sleep. requires a number between 60 and 65535
+  /// the default value is 300 seconds or 5 minutes
+  /// A value of 65535 will disable sleep
   static Future<Map<String, dynamic>> sleepDelay(int seconds) async {
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
         'options': {'sleepDelay': seconds}
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+  }
+
+  /// auto power off. requires a number between 60 and 65535
+  /// 60 will power off the camera after 60 seconds or 1 minute
+  /// The default is 600 seconds or 10 minutes
+  /// A value of 65535 will disable auto power off
+  static Future<Map<String, dynamic>> offDelay(int seconds) async {
+    var data = {
+      'name': 'camera.setOptions',
+      'parameters': {
+        'options': {'offDelay': seconds}
       }
     };
     var response = connect(_url, 'post', data);
