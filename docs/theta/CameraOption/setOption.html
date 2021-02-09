@@ -97,7 +97,7 @@
       <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
             <span class="name ">setOption</span>
 (<wbr><ol class="parameter-list"><li><span class="parameter" id="setOption-param-optionName"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span> <span class="parameter-name">optionName</span>, </span></li>
-<li><span class="parameter" id="setOption-param-optionValue"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span> <span class="parameter-name">optionValue</span></span></li>
+<li><span class="parameter" id="setOption-param-optionValue"><span class="type-annotation">dynamic</span> <span class="parameter-name">optionValue</span></span></li>
 </ol>)
       
     </section>
@@ -108,8 +108,21 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">static Future&lt;Map&lt;String, dynamic&gt;&gt; setOption(
-    String optionName, String optionValue) async {
-  var parsedValue = int.tryParse(optionValue) ?? optionValue;
+    String optionName, dynamic optionValue) async {
+  &#47;&#47; print(&#39;option received is $optionValue of type ${optionValue.runtimeType}&#39;);
+  var parsedValue;
+  if (optionValue.runtimeType == String) {
+    parsedValue = double.tryParse(optionValue) ?? -1111;
+    if (parsedValue == -1111) {
+      parsedValue = optionValue;
+    }
+  } else if (optionValue.runtimeType == double ||
+      optionValue.runtimeType == int) {
+    parsedValue = optionValue;
+  } else {
+    parsedValue = optionValue;
+  }
+
   var data = {
     &#39;name&#39;: &#39;camera.setOptions&#39;,
     &#39;parameters&#39;: {
