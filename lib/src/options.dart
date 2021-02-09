@@ -143,8 +143,21 @@ class CameraOption {
 
   /// set option with single parameter
   static Future<Map<String, dynamic>> setOption(
-      String optionName, String optionValue) async {
-    var parsedValue = int.tryParse(optionValue) ?? optionValue;
+      String optionName, dynamic optionValue) async {
+    // print('option received is $optionValue of type ${optionValue.runtimeType}');
+    var parsedValue;
+    if (optionValue.runtimeType == String) {
+      parsedValue = double.tryParse(optionValue) ?? -1111;
+      if (parsedValue == -1111) {
+        parsedValue = optionValue;
+      }
+    } else if (optionValue.runtimeType == double ||
+        optionValue.runtimeType == int) {
+      parsedValue = optionValue;
+    } else {
+      parsedValue = optionValue;
+    }
+
     var data = {
       'name': 'camera.setOptions',
       'parameters': {
