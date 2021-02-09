@@ -140,4 +140,31 @@ class CameraOption {
     var response = connect(_url, 'post', data);
     return response;
   }
+
+  /// set option with single parameter
+  static Future<Map<String, dynamic>> setOption(
+      String optionName, String optionValue) async {
+    var parsedValue = int.tryParse(optionValue) ?? optionValue;
+    var data = {
+      'name': 'camera.setOptions',
+      'parameters': {
+        'options': {optionName: parsedValue}
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+    // return {'test': 'testdata'};
+  }
+
+  /// get option with single parameter
+  static Future<Map<String, dynamic>> getOption(String optionName) async {
+    var data = {
+      'name': 'camera.getOptions',
+      'parameters': {
+        'optionNames': [optionName]
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+  }
 }
