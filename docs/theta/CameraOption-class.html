@@ -198,6 +198,16 @@ on the official API specification.</p>
           Turn off filter in mySetting 
                   
 </dd>
+        <dt id="getMySetting" class="callable">
+          <span class="name"><a href="../theta/CameraOption/getMySetting.html">getMySetting</a></span><span class="signature">(<wbr><span class="parameter" id="getMySetting-param-optionName"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span> <span class="parameter-name">optionName</span></span>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          get my settings with single parameter
+does not work on SC2 or SC2B. 
+                  
+</dd>
         <dt id="getOption" class="callable">
           <span class="name"><a href="../theta/CameraOption/getOption.html">getOption</a></span><span class="signature">(<wbr><span class="parameter" id="getOption-param-optionName"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span> <span class="parameter-name">optionName</span></span>)
             <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
@@ -246,6 +256,21 @@ A value of 65535 will disable auto power off
         <dd>
           exposure program is documented <a href="https://api.ricoh/docs/theta-web-api-v2.1/options/exposure_program/">here</a>
 Must be one of 1, 2, 3, 4, 9. <a href="../theta/CameraOption/setExposureProgram.html">[...]</a>
+                  
+</dd>
+        <dt id="setMySetting" class="callable">
+          <span class="name"><a href="../theta/CameraOption/setMySetting.html">setMySetting</a></span><span class="signature">(<wbr><span class="parameter" id="setMySetting-param-optionName"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span> <span class="parameter-name">optionName</span>, </span><span class="parameter" id="setMySetting-param-optionValue"><span class="type-annotation">dynamic</span> <span class="parameter-name">optionValue</span></span>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          set my settings.  only saves a single option
+the camera API accepts multiple options as a list
+will only set values for image mode right now
+Does not set mode to video in this version.
+The SC2 will load my settings on power on and if the Wi-Fi connection
+is dropped.  The Z1 loads my settings when you push the Fn button
+a few times.  The icon MY will appear on the OLED. 
                   
 </dd>
         <dt id="setOption" class="callable">
@@ -300,11 +325,13 @@ A value of 65535 will disable sleep
       <li class="section-title"><a href="../theta/CameraOption-class.html#static-methods">Static methods</a></li>
       <li><a href="../theta/CameraOption/filterOff.html">filterOff</a></li>
       <li><a href="../theta/CameraOption/filterSavedOff.html">filterSavedOff</a></li>
+      <li><a href="../theta/CameraOption/getMySetting.html">getMySetting</a></li>
       <li><a href="../theta/CameraOption/getOption.html">getOption</a></li>
       <li><a href="../theta/CameraOption/hdrSave.html">hdrSave</a></li>
       <li><a href="../theta/CameraOption/hdrSet.html">hdrSet</a></li>
       <li><a href="../theta/CameraOption/offDelay.html">offDelay</a></li>
       <li><a href="../theta/CameraOption/setExposureProgram.html">setExposureProgram</a></li>
+      <li><a href="../theta/CameraOption/setMySetting.html">setMySetting</a></li>
       <li><a href="../theta/CameraOption/setOption.html">setOption</a></li>
       <li><a href="../theta/CameraOption/sleepDelay.html">sleepDelay</a></li>
     

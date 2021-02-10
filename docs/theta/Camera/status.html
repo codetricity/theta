@@ -78,6 +78,7 @@
         <li><a href="../../theta/Camera/state.html">state</a></li>
     
         <li class="section-title"><a href="../../theta/Camera-class.html#static-methods">Static methods</a></li>
+        <li><a href="../../theta/Camera/checkForUpdates.html">checkForUpdates</a></li>
         <li><a href="../../theta/Camera/status.html">status</a></li>
     
     
@@ -98,7 +99,11 @@
     <section class="desc markdown">
       <p>Camera status.  Requires "id" is passed
 POST <a href="http://192.168.1.1/osc/commands/status">http://192.168.1.1/osc/commands/status</a>
-Get the ID from a command such as takePicture</p>
+Get the ID from a command such as takePicture
+for the SC2 and SC2B, this won't work for startCapture, only
+for takePicture.  If you take bracketed or interval shooting,
+with the SC2 you need to use /osc/state to check when the camera
+is ready for the next command</p>
     </section>
     
     <section class="summary source-code" id="source">

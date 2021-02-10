@@ -209,6 +209,16 @@ is a Dart map, not JSON. <a href="../theta/Camera/state.html">[...]</a>
     <section class="summary offset-anchor" id="static-methods">
       <h2>Static Methods</h2>
       <dl class="callables">
+        <dt id="checkForUpdates" class="callable">
+          <span class="name"><a href="../theta/Camera/checkForUpdates.html">checkForUpdates</a></span><span class="signature">(<wbr><span class="parameter" id="checkForUpdates-param-fingerprint"><span class="type-annotation">dynamic</span> <span class="parameter-name">fingerprint</span></span>)
+            <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          return current fingerprint. check for changes to the
+camera state from the <code>/osc/state</code> object 
+                  
+</dd>
         <dt id="status" class="callable">
           <span class="name"><a href="../theta/Camera/status.html">status</a></span><span class="signature">(<wbr><span class="parameter" id="status-param-id"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.10.5/dart-core/int-class.html">int</a></span> <span class="parameter-name">id</span></span>)
             <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
@@ -217,7 +227,11 @@ is a Dart map, not JSON. <a href="../theta/Camera/state.html">[...]</a>
         <dd>
           Camera status.  Requires "id" is passed
 POST <a href="http://192.168.1.1/osc/commands/status">http://192.168.1.1/osc/commands/status</a>
-Get the ID from a command such as takePicture 
+Get the ID from a command such as takePicture
+for the SC2 and SC2B, this won't work for startCapture, only
+for takePicture.  If you take bracketed or interval shooting,
+with the SC2 you need to use /osc/state to check when the camera
+is ready for the next command 
                   
 </dd>
       </dl>
@@ -253,6 +267,7 @@ Get the ID from a command such as takePicture
       <li><a href="../theta/Camera/state.html">state</a></li>
     
       <li class="section-title"><a href="../theta/Camera-class.html#static-methods">Static methods</a></li>
+      <li><a href="../theta/Camera/checkForUpdates.html">checkForUpdates</a></li>
       <li><a href="../theta/Camera/status.html">status</a></li>
     
     

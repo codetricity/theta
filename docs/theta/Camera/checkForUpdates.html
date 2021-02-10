@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the info property from the Camera class, for the Dart programming language.">
-  <title>info property - Camera class - theta library - Dart API</title>
+  <meta name="description" content="API docs for the checkForUpdates method from the Camera class, for the Dart programming language.">
+  <title>checkForUpdates method - Camera class - theta library - Dart API</title>
 
   
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">theta</a></li>
     <li><a href="../../theta/theta-library.html">theta</a></li>
     <li><a href="../../theta/Camera-class.html">Camera</a></li>
-    <li class="self-crumb">info property</li>
+    <li class="self-crumb">checkForUpdates method</li>
   </ol>
-  <div class="self-name">info</div>
+  <div class="self-name">checkForUpdates</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,7 +48,7 @@
       <li><a href="../../index.html">theta</a></li>
       <li><a href="../../theta/theta-library.html">theta</a></li>
       <li><a href="../../theta/Camera-class.html">Camera</a></li>
-      <li class="self-crumb">info property</li>
+      <li class="self-crumb">checkForUpdates method</li>
     </ol>
     
     <h5>Camera class</h5>
@@ -87,32 +87,33 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
-      <div><h1><span class="kind-property">info</span> property </h1></div>
+      <div><h1><span class="kind-method">checkForUpdates</span> method </h1></div>
 
+    <section class="multi-line-signature">
+      <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+            <span class="name ">checkForUpdates</span>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="checkForUpdates-param-fingerprint"><span class="type-annotation">dynamic</span> <span class="parameter-name">fingerprint</span></span></li>
+</ol>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>return current fingerprint. check for changes to the
+camera state from the <code>/osc/state</code> object</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">static Future&lt;void&gt; checkForUpdates(fingerprint) async {
+  var url = _baseUrl + &#39;checkForUpdates&#39;;
+  &#47;&#47; request: POST http:&#47;&#47;192.168.1.1&#47;osc&#47;checkForUpdates
+  var body = {&#39;stateFingerprint&#39;: fingerprint};
 
-        <section id="getter">
-        
-        <section class="multi-line-signature">
-          <span class="returntype"><a href="https://api.dart.dev/stable/2.10.5/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.10.5/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>&gt;</span></span>
-                  <span class="name ">info</span>
-          
-</section>
-        
-                <section class="desc markdown">
-          <p>Camera info including firmware version and camera model
-based on GET <a href="http://192.168.1.1/osc/info">http://192.168.1.1/osc/info</a></p>
-        </section>
-                <section class="summary source-code" id="source">
-          <h2><span>Implementation</span></h2>
-          <pre class="language-dart"><code class="language-dart">static Future&lt;Map&lt;String, dynamic&gt;&gt; get info async {
-  &#47;&#47; GET http:&#47;&#47;192.168.1.1&#47;osc&#47;info
-  var url = _baseUrl + &#39;info&#39;;
-  var response = connect(url, &#39;get&#39;);
-  return response;
+  var response = await connect(url, &#39;post&#39;, body);
+  print(response);
+  &#47;&#47; return response.toString();
 }</code></pre>
-        </section>
-</section>
-        
+    </section>
+
   </div> <!-- /.main-content -->
 
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
