@@ -82,7 +82,8 @@ class ThetaFile {
   /// List of the URLs for the images and video on the THETA camera
   /// This can be useful for testing as most editors and terminals
   /// allow you to ctrl-click on the url to view it in a browser such
-  /// as chrome.
+  /// as chrome. You need to pass listUrls the entry count.  You can
+  /// get the total entry count with ThetaFile.totalEntries
   /// Example:
   /// ```dart
   /// print(pretty(await ThetaFile.listUrls(await ThetaFile.totalEntries)));
@@ -107,6 +108,7 @@ class ThetaFile {
     entries.forEach((element) {
       urls.add(element['fileUrl']);
     });
+
     return urls;
   }
 
