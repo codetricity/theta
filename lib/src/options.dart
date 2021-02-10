@@ -180,4 +180,56 @@ class CameraOption {
     var response = connect(_url, 'post', data);
     return response;
   }
+
+  /// set my settings.  only saves a single option
+  /// the camera API accepts multiple options as a list
+  /// will only set values for image mode right now
+  /// Does not set mode to video in this version.
+  /// The SC2 will load my settings on power on and if the Wi-Fi connection
+  /// is dropped.  The Z1 loads my settings when you push the Fn button
+  /// a few times.  The icon MY will appear on the OLED.
+  static Future<Map<String, dynamic>> setMySetting(
+      String optionName, dynamic optionValue) async {
+    print('option received is $optionValue of type ${optionValue.runtimeType}');
+    var parsedValue;
+    if (optionValue.runtimeType == String) {
+      parsedValue = double.tryParse(optionValue) ?? -1111;
+      if (parsedValue == -1111) {
+        // print('setting string');
+        parsedValue = optionValue;
+        // print('parsed value is $parsedValue');
+      }
+    } else if (optionValue.runtimeType == double ||
+        optionValue.runtimeType == int) {
+      parsedValue = optionValue;
+    } else {
+      parsedValue = optionValue;
+    }
+
+    var data = {
+      'name': 'camera._setMySetting',
+      'parameters': {
+        'options': {
+          optionName: parsedValue,
+        },
+        'mode': 'image'
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+    // return {'test': 'testdata'};
+  }
+
+  /// get my settings with single parameter
+  /// does not work on SC2 or SC2B.
+  static Future<Map<String, dynamic>> getMySetting(String optionName) async {
+    var data = {
+      'name': 'camera._getMySetting',
+      'parameters': {
+        'optionNames': [optionName]
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+  }
 }

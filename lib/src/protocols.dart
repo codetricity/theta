@@ -64,9 +64,26 @@ class Camera {
     return cameraState['state']['batteryLevel'];
   }
 
+  /// return current fingerprint. check for changes to the
+  /// camera state from the `/osc/state` object
+
+  static Future<void> checkForUpdates(fingerprint) async {
+    var url = _baseUrl + 'checkForUpdates';
+    // request: POST http://192.168.1.1/osc/checkForUpdates
+    var body = {'stateFingerprint': fingerprint};
+
+    var response = await connect(url, 'post', body);
+    print(response);
+    // return response.toString();
+  }
+
   /// Camera status.  Requires "id" is passed
   /// POST http://192.168.1.1/osc/commands/status
   /// Get the ID from a command such as takePicture
+  /// for the SC2 and SC2B, this won't work for startCapture, only
+  /// for takePicture.  If you take bracketed or interval shooting,
+  /// with the SC2 you need to use /osc/state to check when the camera
+  /// is ready for the next command
   static Future<Map<String, dynamic>> status(int id) async {
     //POST http://192.168.1.1/osc/commands/status
     var url = _baseUrl + 'commands/status';
