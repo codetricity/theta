@@ -174,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _takePicture() async {
-    _displayResponse(await takePicture());
+    _displayResponse(await ThetaRun.takePicture());
   }
 
   void _state() async {
