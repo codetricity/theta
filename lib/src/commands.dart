@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'connect.dart';
 
 const String _url = 'http://192.168.1.1/osc/commands/execute';
 const Map<String, String> _headers = {
@@ -17,5 +18,13 @@ class ThetaRun {
     var response = await http.post(_url, headers: _headers, body: body);
     var responseBody = jsonDecode(response.body);
     return responseBody;
+  }
+
+  static Future<Map<String, dynamic>> stopCapture() async {
+    var _data = {
+      'name': 'camera.stopCapture',
+    };
+    var response = await connect(_url, 'post', _data);
+    return response;
   }
 }
