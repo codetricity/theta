@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'connect.dart';
 
 const String _url = 'http://192.168.1.1/osc/commands/execute';
@@ -136,6 +138,16 @@ class CameraOption {
       'parameters': {
         'options': {'offDelay': seconds}
       }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+  }
+
+  // set options from JSON string
+  static Future<Map<String, dynamic>> setOptionJson(options) {
+    var data = {
+      'name': 'camera.setOptions',
+      'parameters': {'options': jsonDecode(options)}
     };
     var response = connect(_url, 'post', data);
     return response;
