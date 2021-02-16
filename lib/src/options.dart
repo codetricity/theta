@@ -232,14 +232,13 @@ class CameraOption {
     // return {'test': 'testdata'};
   }
 
-  /// get my settings with single parameter
-  /// does not work on SC2 or SC2B.
-  static Future<Map<String, dynamic>> getMySetting(String optionName) async {
+  /// get my settings
+  /// The syntax is different on S and SC
+  /// This will only work on V, Z1, SC2, and SC2B
+  static Future<Map<String, dynamic>> getMySetting() async {
     var data = {
       'name': 'camera._getMySetting',
-      'parameters': {
-        'optionNames': [optionName]
-      }
+      'parameters': {'mode': 'image'}
     };
     var response = connect(_url, 'post', data);
     return response;
