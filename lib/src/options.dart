@@ -196,7 +196,7 @@ class CameraOption {
   /// set my settings.  only saves a single option
   /// the camera API accepts multiple options as a list
   /// will only set values for image mode right now
-  /// Does not set mode to video in this version.
+  /// Does not set mode to video in this command.
   /// The SC2 will load my settings on power on and if the Wi-Fi connection
   /// is dropped.  The Z1 loads my settings when you push the Fn button
   /// a few times.  The icon MY will appear on the OLED.
@@ -232,13 +232,57 @@ class CameraOption {
     // return {'test': 'testdata'};
   }
 
-  /// get my settings
+  static Future<Map<String, dynamic>> setMySettingVideo(
+      String optionName, dynamic optionValue) async {
+    print('option received is $optionValue of type ${optionValue.runtimeType}');
+    var parsedValue;
+    if (optionValue.runtimeType == String) {
+      parsedValue = double.tryParse(optionValue) ?? -1111;
+      if (parsedValue == -1111) {
+        // print('setting string');
+        parsedValue = optionValue;
+        // print('parsed value is $parsedValue');
+      }
+    } else if (optionValue.runtimeType == double ||
+        optionValue.runtimeType == int) {
+      parsedValue = optionValue;
+    } else {
+      parsedValue = optionValue;
+    }
+
+    var data = {
+      'name': 'camera._setMySetting',
+      'parameters': {
+        'options': {
+          optionName: parsedValue,
+        },
+        'mode': 'video'
+      }
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+    // return {'test': 'testdata'};
+  }
+
+  /// get my settings image mode
   /// The syntax is different on S and SC
   /// This will only work on V, Z1, SC2, and SC2B
   static Future<Map<String, dynamic>> getMySetting() async {
     var data = {
       'name': 'camera._getMySetting',
       'parameters': {'mode': 'image'}
+    };
+    var response = connect(_url, 'post', data);
+    return response;
+  }
+
+  /// get my settings video mode
+  /// The syntax is different on S and SC
+  /// This will only work on V, Z1, SC2, and SC2B
+  static Future<Map<String, dynamic>> getMySettingVideo() async {
+    var data = {
+      'name': 'camera._getMySetting',
+      'parameters': {'mode': 'video'}
     };
     var response = connect(_url, 'post', data);
     return response;
